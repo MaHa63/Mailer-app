@@ -28,10 +28,11 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       if @contact.save
+        ContactMailer.welcome(@contact).deliver
         format.html { redirect_to @contact, notice: 'Contact was successfully created.' }
         format.json { render :show, status: :created, location: @contact }
       else
-        format.html { render :new }
+        format.html { render :index }
         format.json { render json: @contact.errors, status: :unprocessable_entity }
       end
     end
