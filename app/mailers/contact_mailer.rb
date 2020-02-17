@@ -9,7 +9,8 @@ class ContactMailer < ApplicationMailer
   def welcome(contact)
     @contact = contact
     puts "Send email"
-    mail(to: @contact.email, subject: "Welcome to our company")
+    puts @contact.email
+    mail(:to => @contact.email, :subject => "Welcome to our company")
   end
 
 end
